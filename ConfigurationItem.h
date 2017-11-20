@@ -112,6 +112,7 @@ class CharArray: public ConfigurationItem {
         }
         virtual bool setValue(void* value){
             strncpy(_value, (char*)value, _length);
+            _value[MAX_STR] = 0;
             return true;
         }
         virtual bool set(char* str){
@@ -146,7 +147,7 @@ class Boolean: public ConfigurationItem {
         }
         virtual bool set(char* str){
             _initialised = true;
-            if(str[0] = '1')
+            if(str[0] == '1')
                 _value = true;
             else
                 _value = false;
