@@ -101,6 +101,38 @@ class EnumConfig: public ConfigurationItem {
         int _default, _value;
 };
 
+class IntegerConfig: public ConfigurationItem {
+    public:
+        IntegerConfig(const char* key, int defaultValue): _default(defaultValue), ConfigurationItem(key, 10){}
+        virtual bool setValue(void* value){
+            _value = *(int*)value;
+            _initialised = true;
+            return true;
+        }
+        virtual bool set(char* str){
+            _value = (int)strtol(str, NULL, 0);
+            _initialised = true;
+            return true;
+        }
+        virtual int* get(){
+            if(_initialised)
+                return &_value;
+            else
+                return &_default;
+        }
+        virtual int getPrintable(char* buf){
+            if(_initialised)
+                return sprintf(buf, "0x%08x", _value);
+            else
+                return sprintf(buf, "0x%08x", _default);
+        }
+        virtual void setDefault(){
+            _value = _default;
+        }
+    private:
+        int _default, _value;
+};
+
 class CharArray: public ConfigurationItem {
     public:
         CharArray(const char* key, const char* defaultValue): ConfigurationItem(key, MAX_STR){
