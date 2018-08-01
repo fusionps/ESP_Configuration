@@ -1,4 +1,4 @@
-#ifndef ConigurationIten_h
+#ifndef ConfigurationItem_h
 #define ConfigurationItem_h
 
 #define LARGEST_CONF_VALUE 20
@@ -13,19 +13,17 @@ class ConfigurationItem {
         virtual bool set(char* str) =0; // This set by passing in char* - i.e. what is saved on flash
         virtual void* get() =0;
         virtual void setDefault() =0;
-        String toString();
+        String toString(){
+            char buf[LARGEST_CONF_VALUE];
+            this->getPrintable(buf);
+            return String(buf);
+        };
         unsigned char getLength(){ return _length; };
         const char* key;
     protected:
         unsigned char _length; // Serialised version
         bool _initialised = false;
 };
-
-String ConfigurationItem::toString(){
-    char buf[LARGEST_CONF_VALUE];
-    this->getPrintable(buf);
-    return String(buf);
-}
 
 class IPAddressConf: public ConfigurationItem {
     public:
