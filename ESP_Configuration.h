@@ -36,6 +36,7 @@ class Configuration {
         bool loadConfiguration(); // save and load current instances of configs
         bool setDefaults();
         bool keyExists(char*);
+        const char* blank = "";
     private: 
     
         ConfigurationItem** configList = 0;

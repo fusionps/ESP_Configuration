@@ -27,7 +27,13 @@ ConfigurationItem* Configuration::findConfigWithKey(const char* key){
 }
 
 void* Configuration::getConfiguration(const char* key){
-    return findConfigWithKey(key)->get();
+    ConfigurationItem* item = findConfigWithKey(key);
+    if(item){
+        return item->get();
+    } else {
+        return &blank;
+    }
+    
 }
 
 bool Configuration::setConfiguration(const char* key, void* value){

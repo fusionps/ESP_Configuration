@@ -134,26 +134,26 @@ class IntegerConfig: public ConfigurationItem {
 class CharArray: public ConfigurationItem {
     public:
         CharArray(const char* key, const char* defaultValue): ConfigurationItem(key, MAX_STR){
-            strncpy(_default, defaultValue, _length);
+            strlcpy(_default, defaultValue, _length);
         }
         virtual int getPrintable(char* buf){
-            strncpy(buf, _value, _length);
+            strlcpy(buf, _value, _length);
             return _length;
         }
         virtual bool setValue(void* value){
-            strncpy(_value, (char*)value, _length);
+            strlcpy(_value, (char*)value, MAX_STR);
             _value[MAX_STR] = 0;
             return true;
         }
         virtual bool set(char* str){
-            strncpy(_value, str, _length);
+            strlcpy(_value, str, MAX_STR);
             return true;
         }
         virtual void* get(){
             return _value;
         }
         virtual void setDefault(){
-            strncpy(_value, _default, _length);
+            strlcpy(_value, _default, MAX_STR);
             return;
         }
     
