@@ -1,8 +1,8 @@
 #ifndef ConfigurationItem_h
 #define ConfigurationItem_h
 
-#define LARGEST_CONF_VALUE 20
-#define MAX_STR 20
+#define LARGEST_CONF_VALUE 200
+#define MAX_STR 200
 
 
 class ConfigurationItem {

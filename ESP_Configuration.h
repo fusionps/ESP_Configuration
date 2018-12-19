@@ -20,7 +20,7 @@
 //#define TOTAL_CONFIG_LENGTH 336
 //#define NUM_CONFIGS 19
 
-#define SAVE_BUFFER 1000
+#define SAVE_BUFFER 10000
 
 class Configuration {
     public:
@@ -34,9 +34,11 @@ class Configuration {
         bool setConfiguration(const char*, void*);
         bool saveConfiguration();
         bool loadConfiguration(); // save and load current instances of configs
+        bool loadForTwenty();
         bool setDefaults();
         bool keyExists(char*);
         const char* blank = "";
+        static bool checkForTwenty();
     private: 
     
         ConfigurationItem** configList = 0;
