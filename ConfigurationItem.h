@@ -142,11 +142,12 @@ class CharArray: public ConfigurationItem {
         }
         virtual bool setValue(void* value){
             strlcpy(_value, (char*)value, MAX_STR);
-            _value[MAX_STR] = 0;
+            _value[MAX_STR - 1] = 0;
             return true;
         }
         virtual bool set(char* str){
             strlcpy(_value, str, MAX_STR);
+            _value[MAX_STR - 1] = 0;
             return true;
         }
         virtual void* get(){
